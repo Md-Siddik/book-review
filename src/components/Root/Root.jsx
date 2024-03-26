@@ -4,8 +4,10 @@ import Header from '../Header/Header';
 const Root = () => {
     return (
         <div>
-            <Header></Header>
-            <Outlet></Outlet>
+            <div className="max-w-[80%] m-auto">
+                <Header></Header>
+                <Outlet></Outlet>
+            </div>
         </div>
     );
 };

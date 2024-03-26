@@ -11,11 +11,14 @@ import Listed from './components/Listed/Listed';
 import Read from './components/Read/Read';
 import This_Year from './components/This_Year/This_Year';
 import Top from './components/Top/Top';
+import ErrorPage from './components/ErrorPage/ErrorPage';
+import BookDetails from './components/BookDetails/BookDetails';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
@@ -37,6 +40,11 @@ const router = createBrowserRouter([
         path: '/this_year',
         element: <This_Year></This_Year>
       },
+      {
+        path: '/book/:id',
+        element: <BookDetails></BookDetails>,
+        loader: () => fetch('../public/bookData.json')
+      }
     ]
   },
 ]);
