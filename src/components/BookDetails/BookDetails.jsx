@@ -2,6 +2,7 @@ import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getStoredReadBook } from "../../utility/localstorage";
+import { removeItem } from "localforage";
 
 const BookDetails = () => {
 
@@ -37,16 +38,24 @@ const BookDetails = () => {
             }
         }
 
+        const saveWishList = id => {
+            const storedWishList = getStoredWishList();
+            const existsWishList = storedWishList.find(bookId => bookId === id);
+            if (!existsWishList) {
+                storedWishList.push(id);
+                localStorage.setItem('wish-list', JSON.stringify(storedWishList))
+            }
+        }
+
         const getData = getStoredReadBook();
         const addedData = getData.find(added => added === bookIdInt);
         
         const getWishList = getStoredWishList();
-        const addedWishList = getWishList.filter(added => added === bookIdInt);
+        const addedWishList = getWishList.find(added => added === bookIdInt);
         console.log(addedWishList);
 
         if (!addedData) {
             saveReadBook(bookIdInt);
-            // saveWishList(addedWishList);
             toast.success('Add to read successfully');
         }
         else {
@@ -64,7 +73,6 @@ const BookDetails = () => {
         }
 
         const saveWishList = id => {
-
             const storedWishList = getStoredWishList();
             const existsWishList = storedWishList.find(bookId => bookId === id);
             if (!existsWishList) {
