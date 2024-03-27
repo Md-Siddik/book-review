@@ -1,7 +1,7 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getStoredReadBook, saveReadBook } from "../../utility/localstorage";
+import { getStoredReadBook } from "../../utility/localstorage";
 
 const BookDetails = () => {
 
@@ -10,20 +10,81 @@ const BookDetails = () => {
     const bookIdInt = parseInt(bookId)
     const book = books.find(book => book.bookId === bookIdInt);
 
-    const getData = getStoredReadBook();
-
-    // saveReadBook(bookIdInt);
-    // toast('Add to read successfully');
-
     const handleReadBook = () => {
+
+        const getStoredReadBook = () => {
+            const storedReadBook = localStorage.getItem('read-book');
+            if (storedReadBook) {
+                return JSON.parse(storedReadBook);
+            }
+            return [];
+        }
+
+        const getStoredWishList = () => {
+            const storedWishList = localStorage.getItem('wish-list');
+            if (storedWishList) {
+                return JSON.parse(storedWishList);
+            }
+            return [];
+        }
+
+        const saveReadBook = id => {
+            const storedReadBook = getStoredReadBook();
+            const exists = storedReadBook.find(bookId => bookId === id);
+            if (!exists) {
+                storedReadBook.push(id);
+                localStorage.setItem('read-book', JSON.stringify(storedReadBook))
+            }
+        }
+
+        const getData = getStoredReadBook();
         const addedData = getData.find(added => added === bookIdInt);
+        
+        const getWishList = getStoredWishList();
+        const addedWishList = getWishList.filter(added => added === bookIdInt);
+        console.log(addedWishList);
 
         if (!addedData) {
             saveReadBook(bookIdInt);
+            // saveWishList(addedWishList);
             toast.success('Add to read successfully');
         }
         else {
-            toast.error('Readed done')
+            toast.error('Already Readed')
+        }
+    }
+
+    const handleWishList = () => {
+        const getStoredWishList = () => {
+            const storedWishList = localStorage.getItem('wish-list');
+            if (storedWishList) {
+                return JSON.parse(storedWishList);
+            }
+            return [];
+        }
+
+        const saveWishList = id => {
+
+            const storedWishList = getStoredWishList();
+            const existsWishList = storedWishList.find(bookId => bookId === id);
+            if (!existsWishList) {
+                storedWishList.push(id);
+                localStorage.setItem('wish-list', JSON.stringify(storedWishList))
+            }
+        }
+
+        const getWishListData = getStoredWishList();
+        const addedWishListData = getWishListData.find(added => added === bookIdInt);
+
+        const storedReadBook = getStoredReadBook();
+        const existsReadBook = storedReadBook.find(bookId => bookId === bookIdInt);
+
+        if (!addedWishListData && !existsReadBook) {
+            saveWishList(bookIdInt);
+            toast.success('Add to read successfully');
+        }
+        else {
+            toast.error('Added in read')
         }
     }
 
@@ -62,7 +123,7 @@ const BookDetails = () => {
                 </table>
                 <div className="card-actions">
                     <button onClick={handleReadBook} className="btn btn-outline text-xl">Read</button>
-                    <button className="btn bg-[#50B1C9] text-white text-xl">Wishlist</button>
+                    <button onClick={handleWishList} className="btn bg-[#50B1C9] text-white text-xl">Wishlist</button>
                 </div>
             </div>
             <ToastContainer />
