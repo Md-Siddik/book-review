@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 
 const Book = ({ book }) => {
     const { bookId, image, bookName, author, rating, category, tags } = book;
-    console.log(image);
     return (
         <Link to={`/book/${bookId}`}>
             <div className="card bg-base-100 border-[1px] border-solid">

@@ -13,6 +13,8 @@ import This_Year from './components/This_Year/This_Year';
 import Top from './components/Top/Top';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import BookDetails from './components/BookDetails/BookDetails';
+import ReadList from './components/ReadList/ReadList';
+import WhiteList from './components/WhiteList/WhiteList';
 
 const router = createBrowserRouter([
   {
@@ -26,7 +28,8 @@ const router = createBrowserRouter([
       },
       {
         path: '/listed',
-        element: <Listed></Listed>
+        element: <Listed></Listed>,
+        loader: () => fetch('/public/bookData.json')
       },
       {
         path: '/read',
@@ -41,10 +44,10 @@ const router = createBrowserRouter([
         element: <This_Year></This_Year>
       },
       {
-        path: '/book/:id',
+        path: '/book/:bookId',
         element: <BookDetails></BookDetails>,
-        loader: () => fetch('../public/bookData.json')
-      }
+        loader: () => fetch('/public/bookData.json'),
+      },
     ]
   },
 ]);
