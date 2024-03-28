@@ -34,7 +34,7 @@ const BookDetails = () => {
             const exists = storedReadBook.find(bookId => bookId === id);
             if (!exists) {
                 storedReadBook.push(id);
-                localStorage.setItem('read-book', JSON.stringify(storedReadBook))
+                localStorage.setItem('read-book', JSON.stringify(storedReadBook));
             }
         }
 
@@ -59,7 +59,7 @@ const BookDetails = () => {
             toast.success('Add to read successfully');
         }
         else {
-            toast.error('Already Readed')
+            toast.error('Already Read')
         }
     }
 
@@ -92,7 +92,7 @@ const BookDetails = () => {
             toast.success('Add to read successfully');
         }
         else {
-            toast.error('Added in read')
+            toast.error('Already readed')
         }
     }
 
