@@ -12,6 +12,15 @@ const Listed = () => {
 
     const [bookReads, setBookReads] = useState([]);
 
+    const handleBooksFilter = filter => {
+        if(filter === 'bookId'){
+            const sortList = bookReads.map( name => name)
+            sortList.sort();
+            sortList.reverse();
+            setBookReads(sortList);
+        }
+    }
+
     useEffect(() => {
         const storedReadBooks = getStoredReadBook();
         if (books.length > 0) {
@@ -21,7 +30,8 @@ const Listed = () => {
                 if (book) {
                     booksRead.push(book)
                 }
-                setBookReads(booksRead)
+                setBookReads(booksRead);
+                // setBookReads(booksRead);
             }
         }
     }, [books])
@@ -39,8 +49,8 @@ const Listed = () => {
                     </svg>
                     </summary>
                     <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                        <li><a>All</a></li>
-                        <li><a>Author</a></li>
+                        <li onClick={() => handleBooksFilter('bookId')}><a>Id</a></li>
+                        <li onClick={() => handleBooksFilter('author')}><a>Author</a></li>
                         <li><a>Publishing year</a></li>
                         <li><a>Tags</a></li>
                         <li><a>Category</a></li>
