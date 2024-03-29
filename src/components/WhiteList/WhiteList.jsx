@@ -1,7 +1,11 @@
-const WhiteList = () => {
+import WishCard from "../WishCard/WishCard";
+
+const WhiteList = ({wishList}) => {
     return (
         <div>
-            <h1>White list</h1>
+            {
+                wishList.map(wish => <WishCard key={wish.bookId} wishes={wish}></WishCard>)
+            }
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-const Book = ({ book }) => {
-    const { bookId, image, bookName, author, rating, category, tags } = book;
+const TopRated = ({top}) => {
+    const { bookId, image, bookName, author, rating, category, tags } = top;
     return (
         <Link to={`/book/${bookId}`}>
             <div className="card bg-base-100 border-[1px] border-solid">
@@ -32,4 +32,4 @@ const Book = ({ book }) => {
     );
 };
 
-export default Book;
+export default TopRated;

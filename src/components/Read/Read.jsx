@@ -1,9 +1,7 @@
-const Read = () => {
-    return (
-        <div>
-            <h1>This is Read page</h1>
-        </div>
-    );
-};
 
+const Read = () => {
+ <div>
+    <h1>This is read</h1>
+ </div>
+}
 export default Read;

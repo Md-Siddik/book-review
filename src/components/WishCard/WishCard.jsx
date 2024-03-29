@@ -1,9 +1,6 @@
-import { Link } from "react-router-dom";
-import BookDetails from "../BookDetails/BookDetails";
-
-const ReadCard = ({books}) => {
+const WishCard = ({wishes}) => {
     
-    const { bookId, image, bookName, author, tags, publisher, totalPages, yearOfPublishing, category, rating } = books;
+    const { image, bookName, author, tags, publisher, totalPages, yearOfPublishing, category, rating } = wishes;
 
     return (
         <div className="card lg:card-side bg-base-100 border-2 mt-6">
@@ -41,13 +38,11 @@ const ReadCard = ({books}) => {
                 <div className="card-actions">
                     <button className="btn rounded-full px-6 text-lg bg-[#328EFF25] text-[#328EFF]">Category: {category}</button>
                     <button className="btn rounded-full px-6 text-lg bg-[#FFAC3325] text-[#FFAC33]">Rating: {rating}</button>
-                    <Link to={`/book/${bookId}`}>
-                        <button className="btn rounded-full px-6 text-lg bg-[#23BE0A] text-white">View Details</button>
-                    </Link>
+                    <button className="btn rounded-full px-6 text-lg bg-[#23BE0A] text-white">View Details</button>
                 </div>
             </div>
         </div>
     );
 };
 
-export default ReadCard;
+export default WishCard;

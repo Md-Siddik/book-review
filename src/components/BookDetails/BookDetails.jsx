@@ -2,7 +2,6 @@ import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { getStoredReadBook } from "../../utility/localstorage";
-import { removeItem } from "localforage";
 
 const BookDetails = () => {
 
@@ -38,15 +37,6 @@ const BookDetails = () => {
             }
         }
 
-        const saveWishList = id => {
-            const storedWishList = getStoredWishList();
-            const existsWishList = storedWishList.find(bookId => bookId === id);
-            if (!existsWishList) {
-                storedWishList.push(id);
-                localStorage.setItem('wish-list', JSON.stringify(storedWishList))
-            }
-        }
-
         const getData = getStoredReadBook();
         const addedData = getData.find(added => added === bookIdInt);
         
@@ -75,7 +65,7 @@ const BookDetails = () => {
         const saveWishList = id => {
             const storedWishList = getStoredWishList();
             const existsWishList = storedWishList.find(bookId => bookId === id);
-            if (!existsWishList) {
+            if (existsWishList !== -1) {
                 storedWishList.push(id);
                 localStorage.setItem('wish-list', JSON.stringify(storedWishList))
             }
@@ -98,7 +88,7 @@ const BookDetails = () => {
 
     return (
         <div className="card lg:card-side bg-base-100">
-            <figure className="w-[50%]"><img className="rounded-xl" src="https://daisyui.com/images/stock/photo-1494232410401-ad00d5433cfa.jpg" alt="Album" /></figure>
+            <figure className="w-[50%]"><img className="rounded-xl" src={book.image} alt="Album" /></figure>
             <div className="card-body w-[50%]">
                 <h2 className="card-title text-4xl">{book.bookName}</h2>
                 <p className="text-xl text-gray-500 font-bold">By : {book.author}</p>

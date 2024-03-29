@@ -13,8 +13,6 @@ import This_Year from './components/This_Year/This_Year';
 import Top from './components/Top/Top';
 import ErrorPage from './components/ErrorPage/ErrorPage';
 import BookDetails from './components/BookDetails/BookDetails';
-import ReadList from './components/ReadList/ReadList';
-import WhiteList from './components/WhiteList/WhiteList';
 
 const router = createBrowserRouter([
   {
