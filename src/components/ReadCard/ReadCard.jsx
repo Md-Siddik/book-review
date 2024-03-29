@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
-import BookDetails from "../BookDetails/BookDetails";
 
 const ReadCard = ({books}) => {
-    
     const { bookId, image, bookName, author, tags, publisher, totalPages, yearOfPublishing, category, rating } = books;
 
     return (

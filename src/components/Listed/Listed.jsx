@@ -15,6 +15,8 @@ const Listed = () => {
     let listSort = [];
     let wishListSort = [];
 
+    // console.log(bookReads)
+
     const handleBooksFilter = filter => {
         if (filter === 'bookId') {
             const sortList = bookReads.map(name => name)

@@ -10,6 +10,7 @@ const BookDetails = () => {
     const bookIdInt = parseInt(bookId)
     const book = books.find(book => book.bookId === bookIdInt);
 
+
     const handleReadBook = () => {
 
         const getStoredReadBook = () => {
