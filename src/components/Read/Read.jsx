@@ -6,7 +6,6 @@ const Read = () => {
 
    const getData = getStoredReadBook();
 
-   console.log(getData);
    const data = [
       {
          name: 'Page A',

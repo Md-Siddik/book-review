@@ -38,6 +38,18 @@ const BookDetails = () => {
 
         const getData = getStoredReadBook();
         const addedData = getData.find(added => added.bookId === bookIdInt);
+        // const checkIndex = getStoredWishList();
+        // const indexId = checkIndex[0].bookId;
+        // console.log(indexId)
+        // getBookId = book.bookId;
+        // getBookIdIndex = indexOf(getBookId)
+        // console.log(book.bookId)
+
+
+         console.log(addedData)
+
+
+
 
         if (!addedData) {
             saveReadBook(book);
@@ -92,8 +104,8 @@ const BookDetails = () => {
 
     return (
         <div className="card lg:card-side bg-base-100">
-            <figure className="w-[50%]"><img className="rounded-xl" src={book.image} alt="Album" /></figure>
-            <div className="card-body w-[50%]">
+            <figure className="w-[50%] max-sm:w-full"><img className="rounded-xl max-sm:w-1/2" src={book.image} alt="Album" /></figure>
+            <div className="card-body w-[50%] max-sm:w-full">
                 <h2 className="card-title text-4xl">{book.bookName}</h2>
                 <p className="text-xl text-gray-500 font-bold">By : {book.author}</p>
                 <div className="border-y-[1px]">

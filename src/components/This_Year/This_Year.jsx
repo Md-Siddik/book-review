@@ -12,7 +12,7 @@ const This_Year = () => {
     
     const topRated = tops.filter(top => top.totalPages > 300);
     return (
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-3 max-sm:grid-cols-1 gap-8">
             {
                 topRated.map(top => <TopRated key={top.id} top={top}></TopRated>)
             }

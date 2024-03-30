@@ -14,7 +14,7 @@ const Top = () => {
     const topRated = tops.filter(top => top.rating > 4.7);
     console.log(topRated)
     return (
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-3 max-sm:grid-cols-1 gap-8">
             {
                 topRated.map(top => <TopRated key={top.id} top={top}></TopRated>)
             }
