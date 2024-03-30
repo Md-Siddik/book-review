@@ -15,13 +15,12 @@ const Listed = () => {
     let listSort = [];
     let wishListSort = [];
 
-    // console.log(bookReads)
-
     const handleBooksFilter = filter => {
         if (filter === 'bookId') {
-            const sortList = bookReads.map(name => name)
+            const sortList = bookReads.map(name => console.log(name))
             sortList.sort();
             sortList.reverse();
+            // console.log(sortList);
             setBookReads(sortList);
 
             
@@ -91,7 +90,7 @@ const Listed = () => {
 
         else if (filter === 'rating'){
             const sortRating = bookReads.map(rating => rating.rating);
-            console.log(sortRating)
+            // console.log(bookReads)
             sortRating.sort();
             sortRating.reverse();
             
@@ -128,14 +127,14 @@ const Listed = () => {
             const booksRead = [];
             const wishesList = [];
             for (const id of storedReadBooks) {
-                const book = books.find(book => book.bookId === id);
+                const book = books.find(book => book.bookId === id.bookId);
                 if (book) {
                     booksRead.push(book)
                 }
                 setBookReads(booksRead);
             }
             for (const id of storedWishList) {
-                const book = books.find(book => book.bookId === id);
+                const book = books.find(book => book.bookId === id.bookId);
                 if (book) {
                     wishesList.push(book)
                 }

@@ -11,7 +11,7 @@ const saveReadBook = id =>{
     const exists = storedReadBook.find(bookId => bookId === id);
     if(!exists){
         storedReadBook.push(id);
-        localStorage.setItem('read-book', JSON.stringify(storedReadBook))
+        // localStorage.setItem('read-book', JSON.stringify(storedReadBook))
     }
 }
 

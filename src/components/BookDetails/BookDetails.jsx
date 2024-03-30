@@ -1,7 +1,6 @@
 import { useLoaderData, useParams } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { getStoredReadBook } from "../../utility/localstorage";
 
 const BookDetails = () => {
 
@@ -12,7 +11,6 @@ const BookDetails = () => {
 
 
     const handleReadBook = () => {
-
         const getStoredReadBook = () => {
             const storedReadBook = localStorage.getItem('read-book');
             if (storedReadBook) {
@@ -31,22 +29,18 @@ const BookDetails = () => {
 
         const saveReadBook = id => {
             const storedReadBook = getStoredReadBook();
-            const exists = storedReadBook.find(bookId => bookId === id);
+            const exists = storedReadBook.find(bookStorage => bookStorage.bookId === id);
             if (!exists) {
-                storedReadBook.push(id);
+                storedReadBook.push(book);
                 localStorage.setItem('read-book', JSON.stringify(storedReadBook));
             }
         }
 
         const getData = getStoredReadBook();
-        const addedData = getData.find(added => added === bookIdInt);
-        
-        const getWishList = getStoredWishList();
-        const addedWishList = getWishList.find(added => added === bookIdInt);
-        console.log(addedWishList);
+        const addedData = getData.find(added => added.bookId === bookIdInt);
 
         if (!addedData) {
-            saveReadBook(bookIdInt);
+            saveReadBook(book);
             toast.success('Add to read successfully');
         }
         else {
@@ -57,33 +51,42 @@ const BookDetails = () => {
     const handleWishList = () => {
         const getStoredWishList = () => {
             const storedWishList = localStorage.getItem('wish-list');
+            console.log(storedWishList);
             if (storedWishList) {
                 return JSON.parse(storedWishList);
             }
             return [];
         }
 
+        const getStoredReadBook = () => {
+            const storedReadBook = localStorage.getItem('read-book');
+            if (storedReadBook) {
+                return JSON.parse(storedReadBook);
+            }
+            return [];
+        }
+
         const saveWishList = id => {
             const storedWishList = getStoredWishList();
-            const existsWishList = storedWishList.find(bookId => bookId === id);
+            const existsWishList = storedWishList.find(wishStroage => wishStroage.bookId === id);
             if (!existsWishList) {
-                storedWishList.push(id);
+                storedWishList.push(book);
                 localStorage.setItem('wish-list', JSON.stringify(storedWishList))
             }
         }
 
         const getWishListData = getStoredWishList();
-        const addedWishListData = getWishListData.find(added => added === bookIdInt);
+        const addedWishListData = getWishListData.find(added => added.bookId === bookIdInt);
 
         const storedReadBook = getStoredReadBook();
-        const existsReadBook = storedReadBook.find(bookId => bookId === bookIdInt);
+        const existsReadBook = storedReadBook.find(bookId => bookId.bookId === bookIdInt);
 
         if (!addedWishListData && !existsReadBook) {
             saveWishList(bookIdInt);
             toast.success('Add to read successfully');
         }
         else {
-            toast.error('Already readed')
+            toast.error('Already added in wishlist');
         }
     }
 
@@ -129,5 +132,4 @@ const BookDetails = () => {
         </div>
     );
 };
-
 export default BookDetails;
