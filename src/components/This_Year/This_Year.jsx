@@ -5,7 +5,7 @@ const This_Year = () => {
     const [tops, setTops] = useState([]);
 
     useEffect(() => {
-        fetch('../../../public/bookData.json')
+        fetch('../bookData.json')
         .then(res => res.json())
         .then(data => setTops(data));
     },[])

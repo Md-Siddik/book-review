@@ -40,10 +40,6 @@ const BookDetails = () => {
         const addedReadData = getReadData.find(added => added.bookId === bookIdInt);
         const getWishData = getStoredWishList();
         const addedWishData = getWishData.find(wish => wish.bookId === bookIdInt);
-        // console.log(addedData)
-        // getBookId = book.bookId;
-        // getBookIdIndex = indexOf(getBookId)
-        // console.log(book.bookId)
 
         const saveWishList = id => {
             const storedWishList = getStoredWishList();
@@ -77,7 +73,6 @@ const BookDetails = () => {
     const handleWishList = () => {
         const getStoredWishList = () => {
             const storedWishList = localStorage.getItem('wish-list');
-            // console.log(storedWishList);
             if (storedWishList) {
                 return JSON.parse(storedWishList);
             }
