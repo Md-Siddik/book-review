@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 
-const ReadCard = ({books}) => {
+const ReadCard = ({ books }) => {
     const { bookId, image, bookName, author, tags, publisher, totalPages, yearOfPublishing, category, rating } = books;
 
     return (
         <div className="card lg:card-side bg-base-100 border-2 mt-6">
-            <figure className="w-1/4 max-sm:w-full p-6"><img className="rounded-2xl w-[200px]" src={image} alt="Album" /></figure>
+            <figure className="m-6 w-[250px] rounded-xl bg-gray-300">
+                <img src={image} alt="Shoes" className="rounded-xl w-[150px] p-4" />
+            </figure>
             <div className="card-body text-lg">
                 <h2 className="card-title text-2xl">{bookName}</h2>
                 <p>By : {author}</p>

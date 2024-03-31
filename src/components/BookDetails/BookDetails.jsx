@@ -36,24 +36,38 @@ const BookDetails = () => {
             }
         }
 
-        const getData = getStoredReadBook();
-        const addedData = getData.find(added => added.bookId === bookIdInt);
-        // const checkIndex = getStoredWishList();
-        // const indexId = checkIndex[0].bookId;
-        // console.log(indexId)
+        const getReadData = getStoredReadBook();
+        const addedReadData = getReadData.find(added => added.bookId === bookIdInt);
+        const getWishData = getStoredWishList();
+        const addedWishData = getWishData.find(wish => wish.bookId === bookIdInt);
+        // console.log(addedData)
         // getBookId = book.bookId;
         // getBookIdIndex = indexOf(getBookId)
         // console.log(book.bookId)
 
+        const saveWishList = id => {
+            const storedWishList = getStoredWishList();
+            const existsWishList = storedWishList.find(wishStroage => wishStroage.bookId === id);
+            if (!existsWishList) {
+                storedWishList.push(book);
+                localStorage.setItem('wish-list', JSON.stringify(storedWishList))
+            }
+        }
 
-         console.log(addedData)
 
-
-
-
-        if (!addedData) {
-            saveReadBook(book);
-            toast.success('Add to read successfully');
+        if (!addedReadData) {
+            if (addedWishData) {
+                const checkIndex = getWishData.indexOf(addedWishData);
+                getWishData.splice(checkIndex, 1);
+                console.log(getWishData);
+                localStorage.setItem('wish-list', JSON.stringify(getWishData));
+                saveReadBook(book);
+                toast.success('Add to read successfully');
+            }
+            else {
+                saveReadBook(book);
+                toast.success('Add to read successfully');
+            }
         }
         else {
             toast.error('Already Read')
@@ -63,7 +77,7 @@ const BookDetails = () => {
     const handleWishList = () => {
         const getStoredWishList = () => {
             const storedWishList = localStorage.getItem('wish-list');
-            console.log(storedWishList);
+            // console.log(storedWishList);
             if (storedWishList) {
                 return JSON.parse(storedWishList);
             }
@@ -104,7 +118,7 @@ const BookDetails = () => {
 
     return (
         <div className="card lg:card-side bg-base-100">
-            <figure className="w-[50%] max-sm:w-full"><img className="rounded-xl max-sm:w-1/2" src={book.image} alt="Album" /></figure>
+            <figure className="w-[40%] max-sm:w-full"><img className="w-[60%] rounded-xl max-sm:w-1/2" src={book.image} alt="Album" /></figure>
             <div className="card-body w-[50%] max-sm:w-full">
                 <h2 className="card-title text-4xl">{book.bookName}</h2>
                 <p className="text-xl text-gray-500 font-bold">By : {book.author}</p>

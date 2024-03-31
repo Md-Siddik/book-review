@@ -1,10 +1,14 @@
-const WishCard = ({wishes}) => {
-    
-    const { image, bookName, author, tags, publisher, totalPages, yearOfPublishing, category, rating } = wishes;
+import { Link } from "react-router-dom";
+
+const WishCard = ({ wishes }) => {
+
+    const { bookId, image, bookName, author, tags, publisher, totalPages, yearOfPublishing, category, rating } = wishes;
 
     return (
         <div className="card lg:card-side bg-base-100 border-2 mt-6">
-            <figure className="w-1/4 max-sm:w-full p-6"><img className="rounded-2xl w-[200px]" src={image} alt="Album" /></figure>
+            <figure className="m-6 w-[250px] rounded-xl bg-gray-300">
+                <img src={image} alt="Shoes" className="rounded-xl w-[150px] p-4" />
+            </figure>
             <div className="card-body text-lg">
                 <h2 className="card-title text-2xl">{bookName}</h2>
                 <p>By : {author}</p>
@@ -38,7 +42,9 @@ const WishCard = ({wishes}) => {
                 <div className="card-actions">
                     <button className="btn rounded-full px-6 text-lg bg-[#328EFF25] text-[#328EFF]">Category: {category}</button>
                     <button className="btn rounded-full px-6 text-lg bg-[#FFAC3325] text-[#FFAC33]">Rating: {rating}</button>
-                    <button className="btn rounded-full px-6 text-lg bg-[#23BE0A] text-white">View Details</button>
+                    <Link to={`/book/${bookId}`}>
+                        <button className="btn rounded-full px-6 text-lg bg-[#23BE0A] text-white">View Details</button>
+                    </Link>
                 </div>
             </div>
         </div>
