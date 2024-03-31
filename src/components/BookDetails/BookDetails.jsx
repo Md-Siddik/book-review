@@ -41,14 +41,14 @@ const BookDetails = () => {
         const getWishData = getStoredWishList();
         const addedWishData = getWishData.find(wish => wish.bookId === bookIdInt);
 
-        const saveWishList = id => {
-            const storedWishList = getStoredWishList();
-            const existsWishList = storedWishList.find(wishStroage => wishStroage.bookId === id);
-            if (!existsWishList) {
-                storedWishList.push(book);
-                localStorage.setItem('wish-list', JSON.stringify(storedWishList))
-            }
-        }
+        // const saveWishList = id => {
+        //     const storedWishList = getStoredWishList();
+        //     const existsWishList = storedWishList.find(wishStroage => wishStroage.bookId === id);
+        //     if (!existsWishList) {
+        //         storedWishList.push(book);
+        //         localStorage.setItem('wish-list', JSON.stringify(storedWishList))
+        //     }
+        // }
 
 
         if (!addedReadData) {
@@ -105,6 +105,9 @@ const BookDetails = () => {
         if (!addedWishListData && !existsReadBook) {
             saveWishList(bookIdInt);
             toast.success('Add to read successfully');
+        }
+        else if (existsReadBook){
+            toast.error('Already added in read list')
         }
         else {
             toast.error('Already added in wishlist');
